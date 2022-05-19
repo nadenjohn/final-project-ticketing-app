@@ -1,3 +1,37 @@
+# Ticket Haven
+
+## Description
+
+Ticket Haven is a web app that can be used to reserve tickets for events like music, comedy, and improv
+
+Admins Useers can also update listed events
+## User Stories
+
+As a user without admin access, I can:
+- View Upcoming events
+- Sort Events by type
+- Reserve tickets for events
+- View information about venues
+- View a list my reservations
+- Cancel reservations
+
+Us a user with admin access, I can:
+- Create new events
+- Update existing events
+- Delete canceled events
+
+## Relationships
+<img width="761" alt="Screen Shot 2022-05-19 at 3 05 35 PM" src="https://user-images.githubusercontent.com/98439812/169419741-20c33af8-02dd-4403-a393-10f969aa7d2b.png">
+
+## Wireframe
+<img width="874" alt="Screen Shot 2022-05-19 at 4 12 58 PM" src="https://user-images.githubusercontent.com/98439812/169419809-a64a78c7-abd5-443c-a50f-e75abf74008b.png">
+<img width="874" alt="Screen Shot 2022-05-19 at 4 13 08 PM" src="https://user-images.githubusercontent.com/98439812/169419824-39fd335d-e4e6-4813-9d5b-55489491c6d0.png">
+<img width="892" alt="Screen Shot 2022-05-19 at 4 13 17 PM" src="https://user-images.githubusercontent.com/98439812/169419997-cb7fde89-c5ee-47bd-bbaa-4a33762cac83.png">
+
+<img width="892" alt="Screen Shot 2022-05-19 at 4 13 26 PM" src="https://user-images.githubusercontent.com/98439812/169419839-61ccb519-f3ec-4237-92d1-d1e211c8f3c6.png">
+<img width="892" alt="Screen Shot 2022-05-19 at 4 13 34 PM" src="https://user-images.githubusercontent.com/98439812/169419856-6b9bc07b-b2ff-4dde-a149-5e9e2f3c35ff.png">
+<img width="901" alt="Screen Shot 2022-05-19 at 4 13 46 PM" src="https://user-images.githubusercontent.com/98439812/169419862-466a4390-9d4a-41bf-848d-bdbde8884e77.png">
+
 # Project Template: React/Rails API
 
 ## Description
