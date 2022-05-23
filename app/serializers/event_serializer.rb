@@ -1,0 +1,3 @@
+class EventSerializer < ActiveModel::Serializer
+  attributes :id, :event_name, :event_type, :venue_id, :event_date, :price, :available_tickets
+end
