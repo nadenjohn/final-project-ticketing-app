@@ -1,3 +1,3 @@
 class VenueSerializer < ActiveModel::Serializer
-  attributes :id, :name, :"21_over", :capacity
+  attributes :id, :name, :"is_adult", :capacity
 end
