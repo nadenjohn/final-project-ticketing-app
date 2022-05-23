@@ -1,10 +1,13 @@
-function OurVenues() {
+import VenueCard from "./VenueCard";
+import React from "react";
+
+
+function OurVenues({venues}) {
+
+  console.log({venues})
     return (
-      <div className="content">
-        <h2>Our Venues</h2>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime tempora nisi eligendi quod ut illo cumque quibusdam reprehenderit veniam. Cum eaque, nostrum fugit ut inventore assumenda perspiciatis sed maiores numquam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati nam repellat hic dolore officia sequi quis quod commodi iusto doloremque. Corporis in et placeat unde sapiente perspiciatis minus! Recusandae, ad!</p>
-        
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime tempora nisi eligendi quod ut illo cumque quibusdam reprehenderit veniam. Cum eaque, nostrum fugit ut inventore assumenda perspiciatis sed maiores numquam? Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati nam repellat hic dolore officia sequi quis quod commodi iusto doloremque. Corporis in et placeat unde sapiente perspiciatis minus! Recusandae, ad!</p>
+        <div className="p-10">
+        <div class=" w-full lg:max-w-full lg:flex">{venues.map((venue) => <VenueCard key={venue.id} venue={venue}/>)}</div>
       </div>
     )
   }

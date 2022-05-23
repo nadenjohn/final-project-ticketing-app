@@ -6,12 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Venue.destroy_all
+# Event.destroy_all
 
-v1 = Venue.create(name: "The Chophouse", is_adult: true, capacity: 200)
 
-e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-e1 = Event.create(event_name: "The Spiders", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-e1 = Event.create(event_name: "The Death Eaters", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-e1 = Event.create(event_name: "The Billygoats", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-e1 = Event.create(event_name: "The Herbs", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+
+v2 = Venue.create(name: "The Rundown", is_adult: true, capacity: 500)
+v2 = Venue.create(name: "The Quarry", is_adult: true, capacity: 100)
+v2 = Venue.create(name: "Antonio's", is_adult: true, capacity: 300)
+v2 = Venue.create(name: "Hank's", is_adult: true, capacity: 200)
+v2 = Venue.create(name: "The Chophouse", is_adult: true, capacity: 200)
+v2 = Venue.create(name: "The Chophouse", is_adult: true, capacity: 200)
+
+# e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+# e1 = Event.create(event_name: "The Spiders", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+# e1 = Event.create(event_name: "The Death Eaters", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+# e1 = Event.create(event_name: "The Billygoats", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+# e1 = Event.create(event_name: "The Herbs", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+# e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)

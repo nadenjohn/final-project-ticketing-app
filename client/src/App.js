@@ -11,6 +11,7 @@ import OurVenues from "./components/OurVenues"
 function App() {
 
   const [events, setEvents] = useState([])
+  const [venues, setVenues] = useState([])
 
 
 
@@ -20,7 +21,18 @@ function App() {
     .then(data => {
       setEvents(data);
     });
-  }, []);
+  }, 
+  []);
+  useEffect(() => {
+    fetch('/venues')
+    .then(res => res.json())
+    .then(data => {
+      setVenues(data);
+    });
+  }, 
+  []);
+
+  
 
   return (
    
@@ -29,7 +41,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home  events={events}/>} />
             <Route path="/myreservations" element={<MyReservations />} />
-            <Route path="/ourvenues" element={<OurVenues />}/>
+            <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
           </Routes>
       
     </div>
