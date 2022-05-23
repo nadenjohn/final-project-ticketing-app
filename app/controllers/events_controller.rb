@@ -1,5 +1,11 @@
 class EventsController < ApplicationController
-    belongs_to :venue
-    has_many :tickets
-    has_many :users, through: :tickets
+    def index 
+        render json: Event.all
+    end 
+    def show
+        dentist = Event.find_by(params[:id])
+        render json: event
+    end 
+
+
 end

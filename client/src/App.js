@@ -9,20 +9,31 @@ import OurVenues from "./components/OurVenues"
 
 
 function App() {
-  return (
-    <div id="page-container">
-      <div className="bg-indigo-600 w-full h-screen">
-          <Header />
 
-        <div id="main-area">
+  const [events, setEvents] = useState([])
+
+
+
+  useEffect(() => {
+    fetch('/events')
+    .then(res => res.json())
+    .then(data => {
+      setEvents(data);
+    });
+  }, []);
+
+  return (
+   
+      <div>
+          <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home  events={events}/>} />
             <Route path="/myreservations" element={<MyReservations />} />
             <Route path="/ourvenues" element={<OurVenues />}/>
           </Routes>
-        </div>
+      
     </div>
-  </div>
+
 
 )
 }
