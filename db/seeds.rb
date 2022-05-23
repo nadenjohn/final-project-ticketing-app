@@ -7,3 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+v1 = Venue.create(name: "The Chophouse", is_adult: true, capacity: 200)
+
+e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Spiders", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Death Eaters", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Billygoats", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Herbs", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
