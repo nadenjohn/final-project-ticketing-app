@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Venue.destroy_all
-# Event.destroy_all
+# Venue.destroy_all
+Event.destroy_all
 
 
 
@@ -18,9 +18,9 @@ v2 = Venue.create(name: "Hank's", is_adult: true, capacity: 200)
 v2 = Venue.create(name: "The Chophouse", is_adult: true, capacity: 200)
 v2 = Venue.create(name: "The Chophouse", is_adult: true, capacity: 200)
 
-# e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-# e1 = Event.create(event_name: "The Spiders", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-# e1 = Event.create(event_name: "The Death Eaters", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-# e1 = Event.create(event_name: "The Billygoats", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-# e1 = Event.create(event_name: "The Herbs", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
-# e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "June 1 @ 9:00pm", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "2022-06-11T21:08:58.594Z", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Spiders", event_type: "music", venue_id: 1, event_date: "2022-05-01T21:08:58.594Z", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Death Eaters", event_type: "music", venue_id: 1, event_date: "2022-05-29T21:08:58.594Z", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Billygoats", event_type: "music", venue_id: 1, event_date: "2022-05-23T21:08:58.594Z", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Herbs", event_type: "music", venue_id: 1, event_date: "2022-06-30T21:08:58.594Z", price: 20, available_tickets: 200)
+e1 = Event.create(event_name: "The Scorpions", event_type: "music", venue_id: 1, event_date: "2022-07-02T21:08:58.594Z", price: 20, available_tickets: 200)

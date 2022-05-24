@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
     def index 
-        render json: Event.all
+        events = Event.where('event_date >= ?', Date.today)
+        render json: events.all.order(event_date: :asc)
     end 
     def show
         dentist = Event.find_by(params[:id])
