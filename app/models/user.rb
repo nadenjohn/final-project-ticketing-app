@@ -1,4 +1,5 @@
 class User < ApplicationRecord
-    has many :tickets
-    has many :events, through: :tickets
+    has_secure_password
+    has_many :tickets
+    has_many :events, through: :tickets
 end

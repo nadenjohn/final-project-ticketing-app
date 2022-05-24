@@ -7,6 +7,10 @@
     "node": "16.x"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.2",
+    "@headlessui/vue": "^1.6.2",
+    "@heroicons/react": "^1.0.6",
+    "@heroicons/vue": "^1.0.6",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
