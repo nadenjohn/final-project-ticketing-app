@@ -5,6 +5,14 @@ class UsersController < ApplicationController
         @users = User.all
         render json: @users, status: :ok
     end
+    def show
+        current_user = User.find(params[:id])
+        render json: current_user
+    end 
+
+    def profile
+        render json: @user
+    end
 
    def create
         @user = User.create(
