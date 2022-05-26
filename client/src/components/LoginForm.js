@@ -1,61 +1,64 @@
 import React, {useState} from 'react'
 
-function LoginForm(props){
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
+function LoginForm( {handleLogin, user} ){
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
 
-    const handleUsernameChange = (evt) => {
-        setUsername(evt.target.value)
-    }
+    const [error, setError] = useState([])
 
-    const handlePasswordChange = (evt) => {
-        setPassword(evt.target.value)
-    }
+ 
 
-    const handleSubmit = (evt) => {
+    const onSubmit = (evt) => {
         evt.preventDefault()
-        fetch(`http://localhost:3000/login`, {
+
+        fetch(`/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({
+            body:JSON.stringify({
                 username,
                 password
             })
         })
-        .then(resp => resp.json())
-        .then(data => {
+        .then(resp => {
+        
+            if(resp.ok){
+                resp.json()
+                .then(data=>{
+            localStorage.setItem("user", data.user);
             localStorage.setItem("token", data.jwt)
-            props.handleLogin(data.user)
+        
+            console.log(data.user)
+
         })
-        setUsername("")
-        setPassword("")
+    } else {
+        resp.json()
+        .then(json => setError(json.error))
     }
-    const formDivStyle = {
-        margin: "auto",
-        padding: "20px",
-        width: "80%"
-    }
+    })
+
+}
+    
+   
+ 
+  
     return(
-        <div>
-            <div style={formDivStyle}>
-            <h1>Log In</h1>
-            <form class="ui form" onSubmit={handleSubmit}>
-                <div class="field">
-                    <label>Username</label>
-                    <input value={username} onChange={handleUsernameChange} type="text" placeholder="username"/>
-                </div>
-                <div class="field">
-                    <label>Password</label>
-                    <input value={password} onChange={handlePasswordChange} type="password" placeholder="password"/>
-                </div>
-                
-                <button class="ui button" type="submit">Submit</button>
-            </form>
+        <form onSubmit={onSubmit}>
+        <div className="row">
+          <div className="six columns">
+            <label>Username</label>
+            <input className="u-full-width" type="text" placeholder="Enter username here..." id="exampleEmailInput" onChange={(e) => setUsername(e.target.value)}/>
+          </div>
+          <div className="six columns">
+            <label >Password</label>
+            <input className="u-full-width" type="text"  id="exampleEmailInput" placeholder="Enter password here..." onChange={(e) => setPassword(e.target.value)}/>
+          </div>
         </div>
-        </div>
+        <div>Welcome, {user.username}</div>
+    <input className="button-primary" type="submit" value="Submit"/>
+  </form>
     )
 } 
 
