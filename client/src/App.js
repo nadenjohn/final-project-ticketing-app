@@ -47,6 +47,7 @@ function App() {
         .then(resp => resp.json())
         .then((data) => {
           setUser(data)
+          setCartItems(data.cart_items)
           // console.log(data)
         })
       }
@@ -78,7 +79,7 @@ const handleLogout = () => {
 }
 
 function handlePost(obj){
-  fetch('/tickets',{
+  fetch('/cart_items',{
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body:JSON.stringify(obj)
@@ -86,7 +87,7 @@ function handlePost(obj){
   .then (res => res.json())
   .then(data => {setCartItems([...cartItems,data])})
 }
-
+console.log(cartItems)
   return (
    
       <div>
@@ -144,12 +145,12 @@ function handlePost(obj){
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {products.map((product) => (
-                              <li key={product.id} className="flex py-6">
+                            {cartItems.map((cartItem) => (
+                              <li key={cartItem.id} className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={product.imageSrc}
-                                    alt={product.imageAlt}
+                                    src='https://cdn3.whatculture.com/images/2020/06/f89dc9fa7526554c-1200x675.jpg'
+                                    alt={cartItem.id}
                                     className="h-full w-full object-cover object-center"
                                   />
                                 </div>
@@ -158,14 +159,14 @@ function handlePost(obj){
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a href={product.href}> {product.name} </a>
+                                        <a href='#'> {cartItem.event_id} </a>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">{cartItem.event_id}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{product.venue}</p>
+                                    <p className="mt-1 text-sm text-gray-500">{cartItem.event_id}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Qty {product.quantity}</p>
+                                    <p className="text-gray-500">Qty: 1</p>
 
                                     <div className="flex">
                                       <button

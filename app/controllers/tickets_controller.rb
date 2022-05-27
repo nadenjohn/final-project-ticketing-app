@@ -30,7 +30,7 @@ class TicketsController < ApplicationController
     end
 private
     def ticket_params
-        params.permit(:user_id, :quantity, :event_id :total_price)
+        params.permit(:user_id, :quantity, :event_id, :total_price)
     end
 end
 
