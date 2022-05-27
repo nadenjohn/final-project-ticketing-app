@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  resources :cart_items
   resources :venues
   resources :events
   resources :tickets

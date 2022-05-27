@@ -28,7 +28,8 @@ function App() {
 
   const [events, setEvents] = useState([])
   const [venues, setVenues] = useState([])
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+  const [cartItems, setCartItems]=useState([])
 
 
     const [user, setUser] = useState({})
@@ -70,15 +71,28 @@ function App() {
     });
   }, 
   []);
-
   
+const handleLogout = () => {
+  setUser({})
+  localStorage.removeItem("token")
+}
+
+function handlePost(obj){
+  fetch('/tickets',{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body:JSON.stringify(obj)
+  })
+  .then (res => res.json())
+  .then(data => {setCartItems([...cartItems,data])})
+}
 
   return (
    
       <div>
-          <Header setOpen={setOpen} user={user}/>
+          <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
           <Routes>
-            <Route path="/" element={<Home  events={events}/>} />
+            <Route path="/" element={<Home  events={events} handlePost={handlePost} user={user}/>} />
             <Route path="/myreservations" element={<MyReservations />} />
             <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
             <Route path="/admin" element={<Admin events={events}/>}/>
@@ -184,7 +198,7 @@ function App() {
                           Checkout
                         </a>
                       </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                      {/* <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
                           or{' '}
                           <button
@@ -195,7 +209,7 @@ function App() {
                             Continue Shopping<span aria-hidden="true"> &rarr;</span>
                           </button>
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </Dialog.Panel>

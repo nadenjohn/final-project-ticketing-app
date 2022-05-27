@@ -1,15 +1,16 @@
-class TicketsController < ApplicationController
+class CartItemsController < ApplicationController
+
     def index
-        render json: Ticket.all
+        render json: CartItem.all
     end
 
     def show
-        ticket = Ticket.find_by(id: params[:id])
+        cart_item = CartItem.find_by(id: params[:id])
         render json: appointment
     end
 
     def update
-        ticket = Ticket.find(params[:id])
+        ticket = CartItem.find(params[:id])
         if ticket
             ticket.update!( ticket_params )
             render json: ticket
@@ -20,18 +21,19 @@ class TicketsController < ApplicationController
 
       
     def create
-        ticket = Ticket.create!(ticket_params)
-        render json: ticket.activity, status: :created
+        ticket = CartItem.create!(cart_item_params)
+        render json: cart_item.activity, status: :created
     end
     def destroy
-        ticket = Ticket.find(params[:id])
-        ticket.destroy
+        cart_item = CartItem.find(params[:id])
+        cart_item.destroy
         head :no_content
     end
 private
-    def ticket_params
+    def cart_item_params
         params.permit(:user_id, :quantity, :event_id :total_price)
     end
 end
 
+end
 end
