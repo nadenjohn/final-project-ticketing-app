@@ -1,12 +1,24 @@
 import React from "react";
 
 
-function EventCard({event}) {
+function EventCard({event, handlePost, user}) {
 
     const date=new Date(event.event_date).toLocaleString()
     console.log(date)
 
     const displayDate = date.slice(0, -6)
+
+    function handleClick(e){
+      e.preventDefault()
+
+      const cartItem = {
+        user_id: user.id,
+        quanitiy: 1,
+        total_price: event.price,
+        event_id: event.id
+      }
+      handlePost(cartItem)
+    }
 
     return (
 <div className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -19,7 +31,7 @@ function EventCard({event}) {
     </p>
   </div>
   <div className="px-6 pt-4 pb-2">
-  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buy Tickets</button>
+  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>Buy Tickets</button>
   </div>
 </div>
     )

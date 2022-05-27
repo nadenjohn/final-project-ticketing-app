@@ -28,9 +28,11 @@ function LoginForm( {handleLogin, user} ){
                 resp.json()
                 .then(data=>{
             localStorage.setItem("user", data.user);
-            localStorage.setItem("token", data.jwt)
+            localStorage.setItem("token", data.token)
+            handleLogin(data.user)
         
             console.log(data.user)
+            console.log(localStorage)
 
         })
     } else {
