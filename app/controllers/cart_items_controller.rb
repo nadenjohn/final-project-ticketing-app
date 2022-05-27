@@ -21,8 +21,9 @@ class CartItemsController < ApplicationController
 
       
     def create
-        ticket = CartItem.create!(cart_item_params)
-        render json: cart_item.activity, status: :created
+        cart_item = CartItem.create!(cart_item_params)
+        user = User.find_by(user_id: params[:user_id])
+        render json: user.cart_items, status: :created
     end
     def destroy
         cart_item = CartItem.find(params[:id])
@@ -31,9 +32,8 @@ class CartItemsController < ApplicationController
     end
 private
     def cart_item_params
-        params.permit(:user_id, :quantity, :event_id :total_price)
+        params.permit(:user_id, :quantity, :event_id, :total_price)
     end
 end
 
-end
-end
+
