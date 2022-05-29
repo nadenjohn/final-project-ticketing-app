@@ -34,6 +34,7 @@ function App() {
 
     const [user, setUser] = useState({})
     const [form, setForm] = useState("")
+
   
     useEffect(() => {
       const token = localStorage.getItem("token")
@@ -88,6 +89,17 @@ const handleLogout = () => {
   setUser({})
   localStorage.removeItem("token")
 }
+function handleRemoveCartItem(id){
+  fetch(`/cart_items/${id}`, {
+    method: "DELETE",
+  });
+  onRemoveItem(id)
+}
+
+function onRemoveItem(id){
+  const updatedCart = cartItems.filter((cartItem) => cartItem.id !== id);
+  setCartItems(updatedCart)
+}
 
 function handlePost(obj){
   fetch('/cart_items',{
@@ -105,7 +117,7 @@ console.log(cartItems)
           <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
           <Routes>
             <Route path="/" element={<Home  events={events} handlePost={handlePost} user={user}/>} />
-            <Route path="/myreservations" element={<MyReservations />} />
+            <Route path="/myreservations" element={<MyReservations events={events}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
             <Route path="/admin" element={<Admin events={events} addEvent={addEvent}/>}/>
             <Route path="/login" element={<LoginForm handleLogin={handleLogin} user={user} />}/>
@@ -181,7 +193,7 @@ console.log(cartItems)
 
                                     <div className="flex">
                                       <button
-                                        
+                                        onClick={() =>{handleRemoveCartItem(cartItem.id)}}
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                         
