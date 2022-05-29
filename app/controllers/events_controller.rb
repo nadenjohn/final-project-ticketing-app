@@ -6,9 +6,17 @@ class EventsController < ApplicationController
         render json: events.all.order(event_date: :asc)
     end 
     def show
-        dentist = Event.find_by(params[:id])
+        event = Event.find_by(params[:id])
         render json: event
     end 
 
+    def create
+        event = Event.create!(event_params)
+        render json: event, status: :created
+    end
+    private
+    def event_params
+        params.permit(:event_name, :price, :event, :event_date, :event_type, :available_tickets, :venue_id)
+    end
 
 end

@@ -55,6 +55,17 @@ function App() {
     const handleLogin = (user) => {
       setUser(user)
     }
+    function addEvent(obj) {
+      fetch('/events', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      })
+        .then((res) => res.json())
+        .then(data => {setEvents([...events, data])});
+    };
 
   useEffect(() => {
     fetch('/events')
@@ -96,7 +107,7 @@ console.log(cartItems)
             <Route path="/" element={<Home  events={events} handlePost={handlePost} user={user}/>} />
             <Route path="/myreservations" element={<MyReservations />} />
             <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
-            <Route path="/admin" element={<Admin events={events}/>}/>
+            <Route path="/admin" element={<Admin events={events} addEvent={addEvent}/>}/>
             <Route path="/login" element={<LoginForm handleLogin={handleLogin} user={user} />}/>
           </Routes>
           <Transition.Root show={open} as={Fragment}>
@@ -170,8 +181,10 @@ console.log(cartItems)
 
                                     <div className="flex">
                                       <button
+                                        
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        
                                       >
                                         Remove
                                       </button>

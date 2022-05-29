@@ -2,12 +2,87 @@ import React from "react";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
+import { useState } from 'react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
    
-function Admin( ) {
+function Admin( {addEvent} ) {
+  const blankAddEventForm = {
+    event_name: "",
+    price: "",
+    event_type: "",
+
+    venue_id: ""
+
+  };
+  const [newEvent, setNewEvent] = useState(blankAddEventForm)
+  const {event_name, price, event_description, event_image, event_type, available_tickets, event_date, venue_id} = newEvent;
+
+  function handleEventNameChange(e){
+    setNewEvent({...newEvent,
+    event_name: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventTicketsChange(e){
+    setNewEvent({...newEvent,
+    available_tickets: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventDescriptionChange(e){
+    setNewEvent({...newEvent,
+    event_description: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventPriceChange(e){
+    setNewEvent({...newEvent,
+    price: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventImageChange(e){
+    setNewEvent({...newEvent,
+    event_image: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventDateChange(e){
+    setNewEvent({...newEvent,
+    event_date: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventVenueIdChange(e){
+    setNewEvent({...newEvent,
+    venue_id: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+  function handleEventTypeChange(e){
+    setNewEvent({...newEvent,
+    event_type: e.target.value,
+
+  })
+  console.log(newEvent)
+}
+const handleForm = (e) => {
+  e.preventDefault();
+  addEvent(newEvent);
+  setNewEvent(blankAddEventForm);
+  console.log(newEvent)
+};
+
     return (
       <>
       <div>
@@ -21,7 +96,7 @@ function Admin( ) {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST">
+            <form action="#" method="POST" onSubmit={handleForm}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
@@ -37,6 +112,8 @@ function Admin( ) {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write event name here..."
+                          value={newEvent.event_name}
+                          onChange={handleEventNameChange}
                         />
                       </div>
                     </div>
@@ -220,6 +297,27 @@ function Admin( ) {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write event price here..."
+                          value={newEvent.price}
+                          onChange={handleEventPriceChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="col-span-3 sm:col-span-2">
+                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                        Venue
+                      </label>
+                      <div className="mt-1 flex rounded-md shadow-sm">
+                       
+                        <input
+                          type="text"
+                          name="event-description"
+                          id="event-description"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                          placeholder="write event venue here..."
+                          value={newEvent.venue_id}
+                          onChange={handleEventVenueIdChange}
                         />
                       </div>
                     </div>
@@ -237,6 +335,8 @@ function Admin( ) {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write number of tickets here..."
+                          value={newEvent.available_ticekts}
+                          onChange={handleEventTicketsChange}
                         />
                       </div>
                     </div>
@@ -253,7 +353,24 @@ function Admin( ) {
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Description..."
-                        defaultValue={''}
+                        value={newEvent.event_description}
+                        onChange={handleEventDescriptionChange}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">
+                      Event Image
+                    </label>
+                    <div className="mt-1">
+                      <textarea
+                        id="about"
+                        name="about"
+                        rows={3}
+                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        placeholder="Image url..."
+                        value={newEvent.event_image}
+                        onChange={handleEventImageChange}
                       />
                     </div>
                   </div>
@@ -295,6 +412,7 @@ function Admin( ) {
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
+                  onClick={handleForm}
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
