@@ -1,12 +1,17 @@
 class CartItemsController < ApplicationController
     skip_before_action :authorize
     def index
-        render json: CartItem.all
+        user = User.find(params[:user_id])
+        if CartItem.user_id === user.id
+        render json: CartItem.all           
+       else
+           nil
+       end
     end
 
     def show
         cart_item = CartItem.find_by(id: params[:id])
-        render json: appointment
+        render json: cart_item
     end
 
     def update
