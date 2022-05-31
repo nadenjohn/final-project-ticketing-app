@@ -25,20 +25,16 @@ function Signup( {setUser} ) {
         console.log(user)
        
         
-        fetch ('http://localhost:3000/users', { 
+        fetch ('/users', { 
             method: 'POST',
             headers: {
-                'Content-Type': 'applicaiton/json',
+                'Content-Type': 'application/json',
                 "Accept": "application/json"},
-                body:JSON.stringify({
-                    user: {
-                        username: user.username,
-                        password: user.password
-                    }
-                })
+                body:JSON.stringify(user)
+                
             })
             .then(res => res.json())
-            .then(console.log(user))
+        
             .then (user => setUser(user))
 
     

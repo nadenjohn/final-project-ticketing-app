@@ -203,12 +203,12 @@ const handleForm = (e) => {
                   
                     <div className="col-span-3 sm:col-span-2">
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
-                        Event Date
+                        Event Time
                       </label>
                       <Menu as="div" className=" p-0 relative inline-block text-left">
                       <div>
                         <Menu.Button id ="event-description" name="event-description" className=" inline-flex w-full rounded-none border rounded-r-md border-gray-300 shadow-sm px-2 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                          Event Date
+                          Event Time
                           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
                         </Menu.Button>
                       </div>

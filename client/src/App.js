@@ -82,14 +82,16 @@ const handleLogout = () => {
 function handleRemoveCartItem(id){
   fetch(`/cart_items/${id}`, {
     method: "DELETE",
+  }).then((r) => {
+    if (r.ok) {
+      setCartItems((cartItems) =>
+      cartItems.filter((cartItem) => cartItem.id !== id)
+      )
+    }
   });
-  onRemoveItem(id)
 }
 
-function onRemoveItem(id){
-  const updatedCart = cartItems.filter((cartItem) => cartItem.id !== id);
-  setCartItems(updatedCart)
-}
+
 
 function handlePost(obj){
   fetch('/cart_items',{
