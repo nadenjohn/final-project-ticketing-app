@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 
-function LoginForm( {handleLogin, user} ){
+function LoginForm( {handleLogin, setUser} ){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    
 
     const [error, setError] = useState([])
+    const [errors, setErrors] =useState([])
 
  
 
@@ -42,11 +44,14 @@ function LoginForm( {handleLogin, user} ){
     })
 
 }
-    
+
+
    
  
   
     return(
+        <>
+        <h2>Login</h2>
         <form onSubmit={onSubmit}>
         <div className="row">
           <div className="six columns">
@@ -58,9 +63,10 @@ function LoginForm( {handleLogin, user} ){
             <input className="u-full-width" type="text"  id="exampleEmailInput" placeholder="Enter password here..." onChange={(e) => setPassword(e.target.value)}/>
           </div>
         </div>
-        <div>Welcome, {user.username}</div>
+        <div>Welcome</div>
     <input className="button-primary" type="submit" value="Submit"/>
   </form>
+  </>
     )
 } 
 

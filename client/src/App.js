@@ -11,20 +11,9 @@ import OurVenues from "./components/OurVenues"
 import Admin from './components/Admin'
 import LoginForm from './components/LoginForm'
 import ShoppingCart from './components/ShoppingCart'
+import Signup from './components/Signup'
 
-const products = [
-  {
-    id: 2,
-    name: 'KISS',
-    href: '#',
-    venue: 'The Garage',
-    price: '$32.00',
-    quantity: 1,
-    imageSrc: 'https://cdn3.whatculture.com/images/2020/06/f89dc9fa7526554c-1200x675.jpg',
-    imageAlt:
-      'KISS pic',
-  },
-]
+
 function App() {
 
   const [events, setEvents] = useState([])
@@ -121,7 +110,9 @@ console.log(cartItems)
             <Route path="/myreservations" element={<MyReservations events={events}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
             <Route path="/admin" element={<Admin events={events} addEvent={addEvent}/>}/>
-            <Route path="/login" element={<LoginForm handleLogin={handleLogin} user={user} />}/>
+            <Route path="/login" element={<LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>}/>
+            <Route path="/signup" element={<Signup handleLogin={handleLogin} user={user} setUser={setUser}/>}/>
+
           </Routes>
           <ShoppingCart setOpen={setOpen} cartItems={cartItems} handleRemoveCartItem={handleRemoveCartItem} open={open}/>
        
