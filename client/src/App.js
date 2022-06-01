@@ -4,6 +4,7 @@ import { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Dialog, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
+
 import Header from './components/Header'
 import MyReservations from  "./components/MyReservations"
 import Home from "./components/Home"
@@ -20,6 +21,7 @@ function App() {
   const [venues, setVenues] = useState([])
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems]=useState([])
+
 
 
     const [user, setUser] = useState({})
@@ -111,7 +113,7 @@ console.log(cartItems)
             <Route path="/" element={<Home  events={events} handlePost={handlePost} user={user}/>} />
             <Route path="/myreservations" element={<MyReservations events={events}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
-            <Route path="/admin" element={<Admin events={events} addEvent={addEvent}/>}/>
+            <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
             <Route path="/login" element={<LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>}/>
             <Route path="/signup" element={<Signup handleLogin={handleLogin} user={user} setUser={setUser}/>}/>
 

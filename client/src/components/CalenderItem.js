@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Calendar } from 'react-date-range'
 import format from 'date-fns/format'
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
 
 
-function CalendarItem() {
+
+
+function CalendarItem({setCalendar, calendar}) {
 
     // date state
-    const [calendar, setCalendar] = useState('')
+  
   
     // open close
     const [open, setOpen] = useState(false)
@@ -46,7 +46,10 @@ function CalendarItem() {
       // console.log(date)
       // console.log(format(date, 'MM/dd/yyyy'))
       setCalendar(format(date, 'MM/dd/yyyy'))
+      
+      
     }
+   
   
     return (
       <div className="calendarWrap">

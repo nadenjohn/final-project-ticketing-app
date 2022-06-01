@@ -48,6 +48,9 @@ input.inputBox {
   display: inline-block;
   position: relative;
 }
+.disabled-link {
+  pointer-events: none;
+}
 
 .calendarElement {
   position: absolute;
@@ -57,3 +60,9 @@ input.inputBox {
   border: 1px solid #ccc;
   z-index: 999;
 }
+
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
