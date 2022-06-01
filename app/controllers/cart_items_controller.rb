@@ -9,7 +9,10 @@ class CartItemsController < ApplicationController
         cart_item = CartItem.find_by(id: params[:id])
         render json: cart_item
     end
-
+    def user_cart
+        user_cart = CartItem.where(user_id: params[:user_id])
+        render json: user_cart
+    end
     def update
         ticket = CartItem.find(params[:id])
         if ticket

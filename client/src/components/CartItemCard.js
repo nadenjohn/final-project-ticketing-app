@@ -18,10 +18,8 @@ function CartItemCard({cartItem, handleRemoveCartItem}) {
             <div className="ml-4 flex flex-1 flex-col">
               <div>
                 <div className="flex justify-between text-base font-medium text-gray-900">
-                  <h3>
-                    <a href='#'> {cartItem.id} </a>
-                  </h3>
-                  <p className="ml-4">{cartItem.id}</p>
+
+                  <p className="ml-4">{cartItem.event.event_name}</p>
                 </div>
                 {/* <p className="mt-1 text-sm text-gray-500">{cartItem.event_id}</p> */}
               </div>

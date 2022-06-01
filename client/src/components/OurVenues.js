@@ -1,8 +1,17 @@
 import VenueCard from "./VenueCard";
 import React from "react";
+import { useState, useEffect } from 'react';
 
 
-function OurVenues({venues}) {
+function OurVenues({venues, setVenues}) {
+  useEffect(() => {
+    fetch('/venues')
+    .then(res => res.json())
+    .then(data => {
+      setVenues(data);
+    });
+  }, 
+  []);
 
   console.log({venues})
     return (

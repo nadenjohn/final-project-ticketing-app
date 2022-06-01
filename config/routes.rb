@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   post '/login', to: 'authentication#login'
   get '/profile', to: 'users#profile'
+  get '/user_cart', to: 'cart_items#user_cart'
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

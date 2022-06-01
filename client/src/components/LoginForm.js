@@ -36,7 +36,8 @@ function LoginForm( {handleLogin, user, setUser} ){
                 .then(data=>{
             localStorage.setItem("user", data.user);
             localStorage.setItem("token", data.token)
-            handleLogin(data.user)
+            // handleLogin(data.user)
+            setUser(data.user)
         
             console.log(data.user)
             console.log(localStorage)
@@ -80,7 +81,8 @@ function LoginForm( {handleLogin, user, setUser} ){
                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     value={username} 
                     placeholder="Enter username here..." 
-                      onChange={handleUsername}
+                    onChange={(e) => 
+                      setUsername(e.target.value)}
                   />
                 </div>
                 <div>
@@ -97,7 +99,8 @@ function LoginForm( {handleLogin, user, setUser} ){
                     
                     value={password} 
                   placeholder="Enter password here..." 
-                  onChange={handlePassword}
+                  onChange={(e) => 
+                    setPassword(e.target.value)}
                   />
                 </div>
               </div>
