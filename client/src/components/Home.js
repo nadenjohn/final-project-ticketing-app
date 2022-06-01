@@ -1,9 +1,32 @@
 import React from "react";
 import EventCard from "./EventCard";
 import FilterShows from "./FilterShows";
+import { useState, useEffect, } from 'react';
    
-function Home( {events, handlePost, user} ) {
-  console.log(user)
+function Home( {events, handlePost, user, setEvents, setCartItems, cartItems} ) {
+  
+  useEffect(() => {
+    fetch('/events')
+    .then(res => res.json())
+    .then(data => {
+      setEvents(data);
+    });
+  }, 
+  []);
+
+function handlePost(obj){
+  fetch('/cart_items',{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body:JSON.stringify(obj)
+  }).then((r) => {
+    if (r.ok) {
+      fetch(`/user_cart?user_id=${user.id}`) 
+      .then(res=>res.json())
+      .then(setCartItems)
+    }
+  });
+}
     return (
       <div >
         <FilterShows />

@@ -34,21 +34,21 @@ function Admin( {addEvent} ) {
     event_name: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventTicketsChange(e){
     setNewEvent({...newEvent,
     available_tickets: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventDescriptionChange(e){
     setNewEvent({...newEvent,
     event_description: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventPriceChange(e){
     setNewEvent({...newEvent,
@@ -62,28 +62,28 @@ function Admin( {addEvent} ) {
     event_image: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventDateChange(e){
     setNewEvent({...newEvent,
     event_date: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventVenueIdChange(e){
     setNewEvent({...newEvent,
     venue_id: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventTypeChange(e){
     setNewEvent({...newEvent,
     event_type: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
 const handleForm = (e) => {
   e.preventDefault();

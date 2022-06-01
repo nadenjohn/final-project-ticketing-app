@@ -6,7 +6,9 @@ import { XIcon } from '@heroicons/react/outline'
 import CartItemCard from './CartItemCard'
 
 
-function ShoppingCart({cartItems, handleRemoveCartItem, setOpen, open}) {
+function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, open, user}) {
+
+ 
    
     return (
 
