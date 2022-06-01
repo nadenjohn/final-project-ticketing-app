@@ -1,9 +1,11 @@
 import React from "react";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/solid'
 import { useState } from 'react';
 import CalendarItem from './CalenderItem'
+import 'react-date-range/dist/styles.css'
+import 'react-date-range/dist/theme/default.css'
+import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -20,8 +22,14 @@ function Admin( {addEvent} ) {
   };
   const [newEvent, setNewEvent] = useState(blankAddEventForm)
   const {event_name, price, event_description, event_image, event_type, available_tickets, event_date, venue_id} = newEvent;
+  const timeValue: Date = new Date("01/01/2021 08:30 AM");
+  const minTime: Date = new Date("01/02/2021 01:00 AM");
+  const maxTime: Date = new Date("01/02/2021 05:00 AM");
+  const [calendar, setCalendar] = useState('')
+  const [clock, setClock] = useState ('')
 
   function handleEventNameChange(e){
+   
     setNewEvent({...newEvent,
     event_name: e.target.value,
 
@@ -47,7 +55,7 @@ function Admin( {addEvent} ) {
     price: e.target.value,
 
   })
-  console.log(newEvent)
+
 }
   function handleEventImageChange(e){
     setNewEvent({...newEvent,
@@ -122,93 +130,17 @@ const handleForm = (e) => {
                   <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
                         Event Dates
                   </label>
-                  <CalendarItem />
-                  <div className="grid grid-cols-3 gap-6">
-                  
-                  
-                    <div className="col-span-3 sm:col-span-2">
-                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
-                        Event Time
-                      </label>
-                      <Menu as="div" className=" p-0 relative inline-block text-left">
-                      <div>
-                        <Menu.Button id ="event-description" name="event-description" className=" inline-flex w-full rounded-none border rounded-r-md border-gray-300 shadow-sm px-2 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-                          Event Time
-                          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-                        </Menu.Button>
-                      </div>
-                      <Transition
-                        as={Fragment}
-                        enter="transition ease-out duration-100"
-                        enterFrom="transform opacity-0 scale-95"
-                        enterTo="transform opacity-100 scale-100"
-                        leave="transition ease-in duration-75"
-                        leaveFrom="transform opacity-100 scale-100"
-                        leaveTo="transform opacity-0 scale-95"
-                      >
-                        <Menu.Items className="origin-top-right absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          <div className="py-1">
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a
-                                  href="#"
-                                  className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                    'block px-4 py-2 text-sm'
-                                  )}
-                                >
-                                  Music
-                                </a>
-                              )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a
-                                  href="#"
-                                  className={classNames(
-                                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                  'block px-4 py-2 text-sm'
-                                )}
-                              >
-                                All Ages
-                              </a>
-                            )}
-                            </Menu.Item>
-                            <Menu.Item>
-                              {({ active }) => (
-                                <a
-                                  href="#"
-                                  className={classNames(
-                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                    'block px-4 py-2 text-sm'
-                                  )}
-                                >
-                                  Comedy
-                                </a>
-                              )}
-                            </Menu.Item>
-                            <form method="POST" action="#">
-                              <Menu.Item>
-                                {({ active }) => (
-                                  <button
-                                    type="submit"
-                                    className={classNames(
-                                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                                      'block w-full text-left px-4 py-2 text-sm'
-                                    )}
-                                  >
-                                    Burlesque
-                                </button>
-                              )}
-                            </Menu.Item>
-                          </form>
-                        </div>
-                      </Menu.Items>
-                    </Transition>
-                  </Menu>
-                  </div>
-                  
-                  </div>
+                  <CalendarItem setCalendar={setCalendar} calendar={calendar} />
+                  <TimePickerComponent placeholder="Select a time"
+                   
+                    value={timeValue}
+                    min={minTime}
+                    max={maxTime}
+                    format="HH:mm"
+                    step={60}>
+
+                  </TimePickerComponent>
+
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">

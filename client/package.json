@@ -12,6 +12,7 @@
     "@heroicons/react": "^1.0.6",
     "@heroicons/vue": "^1.0.6",
     "@reduxjs/toolkit": "^1.8.1",
+    "@syncfusion/ej2-react-calendars": "^20.1.58",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

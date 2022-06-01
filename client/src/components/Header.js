@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { ShoppingCartIcon } from '@heroicons/react/outline'
+import '../App.css';
 
 function Header({setOpen, user, handleLogout}) {
     
@@ -24,7 +25,7 @@ function Header({setOpen, user, handleLogout}) {
                     <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4" href="#"><Link to="/ourvenues"> Our Venues</Link></a>
                   </li>
                   <li className="mr-3">
-                    <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4" href="#"><Link to="/admin">Admin</Link></a>
+                    <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4 " href="#"><Link to="/admin" className='diabled-link'>Admin</Link></a>
                   </li>
                   <li className="mr-3">
                     <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4" href="#"><Link to="/login">Log-in</Link></a>

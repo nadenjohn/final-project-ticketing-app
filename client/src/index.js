@@ -3,6 +3,11 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { registerLicense } from '@syncfusion/ej2-base';
+
+
+registerLicense('ORg4AjUWIQA/Gnt2VVhhQlFac1pJW3xKfkx0RWFbb1h6cVFMZVhBJAtUQF1hS35WdURiUXpWdHBSQ2Na');
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root")
