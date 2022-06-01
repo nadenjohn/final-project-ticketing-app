@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { LockClosedIcon } from '@heroicons/react/solid'
 
    
-function Signup( {setUser} ) {
+function Signup( {setUser, handleLogin, user} ) {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')

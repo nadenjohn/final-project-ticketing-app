@@ -1,11 +1,8 @@
 class CartItemsController < ApplicationController
     skip_before_action :authorize
     def index
-        if CartItem.user_id === user.id
         render json: CartItem.all           
-       else
-           nil
-       end
+
     end
 
     def show
@@ -26,8 +23,7 @@ class CartItemsController < ApplicationController
       
     def create
         cart_item = CartItem.create!(cart_item_params)
-        user = User.find_by(user_id: params[:user_id])
-        render json: user.cart_items, status: :created
+        render json: cart_item, status: :created
     end
     def destroy
         cart_item = CartItem.find(params[:id])

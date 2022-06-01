@@ -27,13 +27,7 @@ function Header({setOpen, user, handleLogout}) {
                   <li className="mr-3">
                     <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4 " href="#"><Link to="/admin" className='diabled-link'>Admin</Link></a>
                   </li>
-                  <li className="mr-3">
-                    <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4" href="#"><Link to="/login">Log-in</Link></a>
-                  </li>
-                  
-                  <li className="mr-3">
-                    <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4" href="#"><Link to="/signup">Sign-up</Link></a>
-                  </li>
+
                   <li className="mr-3">
                     <button
                             type="button"

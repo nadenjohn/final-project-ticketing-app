@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import { LockClosedIcon } from '@heroicons/react/solid'
+import Signup from './Signup'
 
-function LoginForm( {handleLogin, user} ){
+function LoginForm( {handleLogin, user, setUser} ){
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
@@ -117,6 +118,7 @@ function LoginForm( {handleLogin, user} ){
             </form>
           </div>
         </div>
+        <Signup handleLogin={handleLogin} user={user} setUser={setUser}/>
       </>
     )
 } 

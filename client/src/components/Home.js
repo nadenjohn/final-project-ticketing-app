@@ -3,6 +3,7 @@ import EventCard from "./EventCard";
 import FilterShows from "./FilterShows";
    
 function Home( {events, handlePost, user} ) {
+  console.log(user)
     return (
       <div >
         <FilterShows />

@@ -12,7 +12,7 @@ import OurVenues from "./components/OurVenues"
 import Admin from './components/Admin'
 import LoginForm from './components/LoginForm'
 import ShoppingCart from './components/ShoppingCart'
-import Signup from './components/Signup'
+
 
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
         })
       }
     }, [])
+    console.log(user.id)
     const handleLogin = (user) => {
       setUser(user)
     }
@@ -105,6 +106,10 @@ function handlePost(obj){
   .then(data => {setCartItems([...cartItems,data])})
 }
 console.log(cartItems)
+const userToken = localStorage.getItem('token')
+
+if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>
+
   return (
    
       <div>
@@ -114,9 +119,8 @@ console.log(cartItems)
             <Route path="/myreservations" element={<MyReservations events={events}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues}/>}/>
             <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
-            <Route path="/login" element={<LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>}/>
-            <Route path="/signup" element={<Signup handleLogin={handleLogin} user={user} setUser={setUser}/>}/>
-
+            
+            
           </Routes>
           <ShoppingCart setOpen={setOpen} cartItems={cartItems} handleRemoveCartItem={handleRemoveCartItem} open={open}/>
        
