@@ -31,12 +31,23 @@ function Admin( {addEvent, events} ) {
   const maxTime: Date = new Date("01/02/2021 05:00 AM");
   const [calendar, setCalendar] = useState('')
   const [timeSlots, setTimeSlots] = useState ([])
-  const [timeSlot, setTimeSlot] = useState (null)
+  const [timeSlot, setTimeSlot] = useState ({})
   const [timeOption, setTimeOption] = useState('')
-  console.log(events)
+  const [eventName, setEventName] = useState('')
+  const [eventPrice, setEventPrice]= useState('')
+  const [eventDescription, setEventDescription]= useState('')
+  const [eventImage, setEventImage]= useState('')
+  const [availableTickets, setAvailableTickets] = useState('')
+  const [venueId, setVenueId] = useState('')
+  
+  console.log(eventName)
 
   const id = timeOption
-  console.log(timeOption)
+ 
+ 
+
+  const dateItem = `${timeSlot.time_value} + ${calendar}`
+ 
 
   useEffect(() => {
     fetch("/timeslots")
@@ -53,71 +64,81 @@ function Admin( {addEvent, events} ) {
 
 
 
-  function handleEventNameChange(e){
+
+//   function handleEventNameChange(e){
    
-    setNewEvent({...newEvent,
-    event_name: e.target.value,
+//     setNewEvent({...newEvent,
+//     event_name: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventTicketsChange(e){
-    setNewEvent({...newEvent,
-    available_tickets: e.target.value,
+// }
+//   function handleEventTicketsChange(e){
+//     setNewEvent({...newEvent,
+//     available_tickets: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventDescriptionChange(e){
-    setNewEvent({...newEvent,
-    event_description: e.target.value,
+// }
+//   function handleEventDescriptionChange(e){
+//     setNewEvent({...newEvent,
+//     event_description: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventPriceChange(e){
-    setNewEvent({...newEvent,
-    price: e.target.value,
+// }
+//   function handleEventPriceChange(e){
+//     setNewEvent({...newEvent,
+//     price: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventImageChange(e){
-    setNewEvent({...newEvent,
-    image: e.target.value,
+// }
+//   function handleEventImageChange(e){
+//     setNewEvent({...newEvent,
+//     image: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventDateChange(e){
-    console.log(e.target.value)
+// }
+//   function handleEventDateChange(e){
+//     console.log(e.target.value)
 
-    setNewEvent({...newEvent,
-    event_date: e.target.value,
+//     setNewEvent({...newEvent,
+//     event_date: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventVenueIdChange(e){
-    setNewEvent({...newEvent,
-    venue_id: e.target.value,
+// }
+//   function handleEventVenueIdChange(e){
+//     setNewEvent({...newEvent,
+//     venue_id: e.target.value,
 
-  })
+//   })
 
-}
-  function handleEventTypeChange(e){
-    setNewEvent({...newEvent,
-    event_type: e.target.value,
+// }
+//   function handleEventTypeChange(e){
+//     setNewEvent({...newEvent,
+//     event_type: e.target.value,
 
-  })
+//   })
 
-}
-const handleForm = (e) => {
+// }
+const onSubmit = (e) => {
   e.preventDefault();
-  addEvent(newEvent);
-  setNewEvent(blankAddEventForm);
-  console.log(newEvent)
-};
+  const event = {
+    event_date: dateItem,
+    event_name: eventName,
+    price: eventPrice,
+    image: eventImage,
+    available_tickets: availableTickets,
+    venue_id: venueId,
+    event_discription: eventDescription
+  }
+    addEvent(event)
+
+  }
+
 
     return (
       <>
@@ -132,7 +153,7 @@ const handleForm = (e) => {
             </div>
           </div>
           <div className="mt-5 md:mt-0 md:col-span-2">
-            <form action="#" method="POST" onSubmit={handleForm}>
+            <form action="#" method="POST" onSubmit={onSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
@@ -148,8 +169,8 @@ const handleForm = (e) => {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write event name here..."
-                          value={newEvent.event_name}
-                          onChange={handleEventNameChange}
+                        
+                          onChange={(e) => setEventName(e.target.value)}
                         />
                       </div>
                     </div>
@@ -189,8 +210,8 @@ const handleForm = (e) => {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write event price here..."
-                          value={newEvent.price}
-                          onChange={handleEventPriceChange}
+                    
+                          onChange={(e) => setEventPrice(e.target.value)}
                         />
                       </div>
                     </div>
@@ -208,8 +229,8 @@ const handleForm = (e) => {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write event venue here..."
-                          value={newEvent.venue_id}
-                          onChange={handleEventVenueIdChange}
+                    
+                          onChange={(e) => setVenueId(e.target.value)}
                         />
                       </div>
                     </div>
@@ -227,45 +248,53 @@ const handleForm = (e) => {
                           id="event-description"
                           className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
                           placeholder="write number of tickets here..."
-                          value={newEvent.available_ticekts}
-                          onChange={handleEventTicketsChange}
+                
+                          onChange={(e) => setAvailableTickets(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="col-span-3 sm:col-span-2">
+                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                        Event Description
+                      </label>
+                      <div className="mt-1 flex rounded-md shadow-sm">
+                       
+                        <input
+                          type="text"
+                          name="event-description"
+                          id="event-description"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                          placeholder="event description..."
+                
+                          onChange={(e) => setEventDescription(e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="col-span-3 sm:col-span-2">
+                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                        Event Image
+                      </label>
+                      <div className="mt-1 flex rounded-md shadow-sm">
+                       
+                        <input
+                          type="text"
+                          name="event-description"
+                          id="event-description"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                          placeholder="image url..."
+                
+                          onChange={(e) => setEventImage(e.target.value)}
                         />
                       </div>
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                      Event Description
-                    </label>
-                    <div className="mt-1">
-                      <textarea
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Description..."
-                        value={newEvent.event_description}
-                        onChange={handleEventDescriptionChange}
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                      Event Image
-                    </label>
-                    <div className="mt-1">
-                      <textarea
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                        placeholder="Image url..."
-                        value={newEvent.image}
-                        onChange={handleEventImageChange}
-                      />
-                    </div>
-                  </div>
+                 
+                  
 
                   
 
@@ -303,13 +332,11 @@ const handleForm = (e) => {
                   </div> */}
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                  <button
-                  onClick={handleForm}
+                  <input
+                
                     type="submit"
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    Save
-                  </button>
+                  />
                 </div>
               </div>
             </form>

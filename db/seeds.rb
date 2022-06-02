@@ -7,13 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Venue.destroy_all
-# Event.destroy_all
+Event.destroy_all
 
-t1 = Timeslot.create(start_time: "6:00 PM", time_value: "T18:00:00.000Z")
-t1 = Timeslot.create(start_time: "7:00 PM", time_value: "T19:00:00.000Z")
-t1 = Timeslot.create(start_time: "8:00 PM", time_value: "T20:00:00.000Z")
-t1 = Timeslot.create(start_time: "9:00 PM", time_value: "T21:00:00.000Z")
-t1 = Timeslot.create(start_time: "10:00 PM", time_value: "T22:00:00.000Z")
+# t1 = Timeslot.create(start_time: "6:00 PM", time_value: "T18:00:00.000Z")
+# t1 = Timeslot.create(start_time: "7:00 PM", time_value: "T19:00:00.000Z")
+# t1 = Timeslot.create(start_time: "8:00 PM", time_value: "T20:00:00.000Z")
+# t1 = Timeslot.create(start_time: "9:00 PM", time_value: "T21:00:00.000Z")
+# t1 = Timeslot.create(start_time: "10:00 PM", time_value: "T22:00:00.000Z")
 
 
 # v2 = Venue.create(name: "The Rundown", is_adult: true, capacity: 500)

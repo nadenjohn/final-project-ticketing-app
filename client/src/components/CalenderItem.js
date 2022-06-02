@@ -18,7 +18,7 @@ function CalendarItem({setCalendar, calendar}) {
   
     useEffect(() => {
       // set current date on component load
-      setCalendar(format(new Date(), 'MM/dd/yyyy'))
+      setCalendar(format(new Date(), 'MM-dd-yyyy'))
       // event listeners
       document.addEventListener("keydown", hideOnEscape, true)
       document.addEventListener("click", hideOnClickOutside, true)
