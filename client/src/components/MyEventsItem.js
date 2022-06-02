@@ -3,6 +3,12 @@ import React from 'react'
 
 
 function MyEventsItem({reservation}) {
+
+    console.log(reservation)
+    const date=new Date(reservation.event.event_date).toLocaleString()
+    
+
+    const displayDate = date.slice(0, -6)
     return (
 
 <div key={reservation.id} className="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
@@ -14,6 +20,11 @@ function MyEventsItem({reservation}) {
 
                 <div className="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
                   <h3 className="text-sm font-medium text-gray-900">{reservation.event.event_name}</h3>
+
+                  
+                </div>
+                <div className="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
+                  <h3 className="text-lg font-medium text-gray-900">{displayDate} PM</h3>
 
                   
                 </div>

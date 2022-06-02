@@ -5,6 +5,7 @@ import '../App.css';
 
 function Header({setOpen, user, handleLogout}) {
     
+  console.log(user)
   
   return (
       <div className="bg-gray-400 font-sans leading-normal tracking-normal">
@@ -25,7 +26,7 @@ function Header({setOpen, user, handleLogout}) {
                     <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4" href="#"><Link to="/ourvenues"> Our Venues</Link></a>
                   </li>
                   <li className="mr-3">
-                    <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4 " href="#"><Link to="/admin" className='diabled-link'>Admin</Link></a>
+                    {user.admin ? <a className="inline-block text-gray-200 no-underline hover:text-gray-100 hover:text-underline py-2 px-4 " href="#"><Link to="/admin" className='diabled-link'>Admin</Link></a> : <div></div>}
                   </li>
 
                   <li className="mr-3">

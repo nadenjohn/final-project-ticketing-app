@@ -45,6 +45,7 @@ function App() {
         })
         .then(resp => resp.json())
         .then((data) => {
+          console.log(data)
           setUser(data)
         })
       }
@@ -89,8 +90,10 @@ function App() {
 
   
 const handleLogout = () => {
-  setUser({})
+  console.log(localStorage.getItem("user"))
+  localStorage.removeItem("user")
   localStorage.removeItem("token")
+  setUser({})
 }
 function handleRemoveCartItem(id){
   fetch(`/cart_items/${id}`, {

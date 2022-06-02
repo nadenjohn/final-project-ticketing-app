@@ -9,15 +9,17 @@ function LoginForm( {handleLogin, user, setUser} ){
 
     const [error, setError] = useState([])
 
-    const handleUsername = (e) => {
-        setUsername(e.target.value)
-    }
-    const handlePassword=(e) => {
-        setPassword(e.target.value)
-    }
+    // const handleUsername = (e) => {
+    //     setUsername(e.target.value)
+
+    // }
+    // const handlePassword=(e) => {
+    //     setPassword(e.target.value)
+    // }
 
     const onSubmit = (evt) => {
         evt.preventDefault()
+        
 
         fetch(`/login`, {
             method: "POST",
@@ -40,8 +42,8 @@ function LoginForm( {handleLogin, user, setUser} ){
             // handleLogin(data.user)
             setUser(data.user)
         
-            console.log(data.user)
-            console.log(localStorage)
+            
+            console.log(localStorage.user)
 
         })
     } else {
