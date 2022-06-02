@@ -3,16 +3,9 @@ import EventCard from "./EventCard";
 import FilterShows from "./FilterShows";
 import { useState, useEffect, } from 'react';
    
-function Home( {events, handlePost, user, setEvents, setCartItems, cartItems} ) {
+function Home( {events, handlePost, user, setCartItems} ) {
   
-  useEffect(() => {
-    fetch('/events')
-    .then(res => res.json())
-    .then(data => {
-      setEvents(data);
-    });
-  }, 
-  []);
+
 
 function handlePost(obj){
   fetch('/cart_items',{

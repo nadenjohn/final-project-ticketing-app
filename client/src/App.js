@@ -54,14 +54,14 @@ function App() {
         .then(data => {setEvents([...events, data])});
     };
 
-  // useEffect(() => {
-  //   fetch('/events')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     setEvents(data);
-  //   });
-  // }, 
-  // []);
+  useEffect(() => {
+    fetch('/events')
+    .then(res => res.json())
+    .then(data => {
+      setEvents(data);
+    });
+  }, 
+  []);
   // useEffect(() => {
   //   fetch('/venues')
   //   .then(res => res.json())
@@ -127,8 +127,6 @@ if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser=
             <Route path="/myreservations" element={<MyReservations events={events}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues} setVenues={setVenues}/>}/>
             <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
-            
-            
           </Routes>
           <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} open={open}/>
        
