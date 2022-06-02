@@ -10,8 +10,12 @@ class CartItemsController < ApplicationController
         render json: cart_item
     end
     def user_cart
-        user_cart = CartItem.where(user_id: params[:user_id])
+        user_cart = CartItem.where(user_id: params[:user_id], status: "in_cart")
         render json: user_cart
+    end
+    def cart_checkout
+        purchased_items = CartItem.where(user_id: params[:user_id]).update_all(status: 'purchased')
+        render json: purchased_items
     end
     def update
         ticket = CartItem.find(params[:id])
@@ -35,7 +39,7 @@ class CartItemsController < ApplicationController
     end
 private
     def cart_item_params
-        params.permit(:user_id, :quantity, :event_id, :total_price)
+        params.permit(:user_id, :quantity, :event_id, :total_price, :status)
     end
 end
 

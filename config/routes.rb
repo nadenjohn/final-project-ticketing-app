@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
 
+  resources :timeslots
   resources :cart_items
   resources :venues
   resources :events
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create]
 
   post '/login', to: 'authentication#login'
+  patch '/cart_checkout/', to: 'cart_items#cart_checkout'
   get '/profile', to: 'users#profile'
   get '/user_cart', to: 'cart_items#user_cart'
 

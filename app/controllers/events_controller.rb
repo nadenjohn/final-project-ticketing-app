@@ -2,7 +2,8 @@ class EventsController < ApplicationController
     skip_before_action :authorize
     
     def index 
-        events = Event.where('event_date >= ?', Date.today)
+        events = Event.all
+        # events = Event.where('event_date >= ?', Date.today)
         render json: events.all.order(event_date: :asc)
     end 
     def show
@@ -16,7 +17,7 @@ class EventsController < ApplicationController
     end
     private
     def event_params
-        params.permit(:event_name, :price, :event, :event_date, :event_type, :available_tickets, :venue_id)
+        params.permit(:event_name, :price, :event, :event_date, :event_type, :available_tickets, :venue_id, :image)
     end
 
 end

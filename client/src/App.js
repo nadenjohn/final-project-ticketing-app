@@ -23,6 +23,8 @@ function App() {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems]=useState([])
 
+
+  console.log(cartItems)
     useEffect(() => {
       const token = localStorage.getItem("token")
       if(token){
@@ -70,13 +72,7 @@ function App() {
   //   });
   // }, 
   // []);
-  // useEffect(() => {
-  //   fetch(`/user_cart?user_id=${user.id}`)
-  //   .then(res => res.json())
-  //   .then(data => {setCartItems(data)
-  //   });
-  // }, 
-  // []);
+
  
 
   
@@ -98,22 +94,28 @@ function handleRemoveCartItem(id){
 }
 
 
+function handleCheckout() {
+  console.log(cartItems)
+  console.log(user)
+
+  fetch(`/cart_items?user_id=${user.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+  }).then((r) => {
+  if (r.ok) {
+    fetch(`/user_cart?user_id=${user.id}`) 
+    .then(res=>res.json())
+    .then(setCartItems)
+  }
+});
+
+}
 
 
-// function handlePost(obj){
-//   fetch('/cart_items',{
-//     method: 'POST',
-//     headers: {'Content-Type': 'application/json'},
-//     body:JSON.stringify(obj)
-//   }).then((r) => {
-//     if (r.ok) {
-//       fetch(`/user_cart?user_id=${user.id}`) 
-//       .then(res=>res.json())
-//       .then(setCartItems)
-//     }
-//   });
-  
-// }
+
 const userToken = localStorage.getItem('token')
 
 if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>

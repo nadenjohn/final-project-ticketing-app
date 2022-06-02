@@ -8,8 +8,35 @@ import CartItemCard from './CartItemCard'
 
 function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, open, user}) {
 
+
+
 console.log(cartItems)
   let totalPrice = 0;
+
+  cartItems.forEach(cartItem => {
+    totalPrice += cartItem.total_price;
+  });
+
+
+  function handleCheckout() {
+    console.log(cartItems)
+    console.log(user)
+
+    fetch(`/cart_checkout?user_id=${user.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    }).then((r) => {
+      if (r.ok) {
+        fetch(`/user_cart?user_id=${user.id}`) 
+        .then(res=>res.json())
+        .then(setCartItems)
+      }
+    });
+    
+  }
 
   cartItems.forEach(cartItem => {
     totalPrice += cartItem.total_price;
@@ -86,7 +113,7 @@ console.log(cartItems)
                           <a
                             href="#"
                             className="flex items-center justify-center rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                            onClick={handleClick}
+                            onClick={handleCheckout}
                           >
                             Checkout
                           </a>
