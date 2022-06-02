@@ -7,6 +7,7 @@ import CalendarItem from './CalenderItem'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { format } from 'date-fns';
+import UpcomingEventItem from './UpcomingEventItem'
 
 
 
@@ -47,6 +48,7 @@ function Admin( {addEvent, events} ) {
  
 
   const dateItem = `${timeSlot.time_value} + ${calendar}`
+  
  
 
   useEffect(() => {
@@ -155,7 +157,7 @@ const onSubmit = (e) => {
           <div className=" mt-5 md:mt-0 md:col-span-2">
             <form action="#" method="POST" onSubmit={onSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 py-5 bg-slate-400' space-y-6 sm:p-6">
+                <div className="px-4 py-5 bg-slate-400 space-y-6 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
@@ -188,7 +190,7 @@ const onSubmit = (e) => {
                   <option value="">Select Time</option>
                   {timeSlots.map((timeSlot) => (
                     <option key={timeSlot.id} value={timeSlot.id}>
-                      {timeSlot.star_time}
+                      {timeSlot.start_time}
                     </option>
                   ))}
 
@@ -335,7 +337,7 @@ const onSubmit = (e) => {
                   <input
                 
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   />
                 </div>
               </div>
@@ -343,7 +345,7 @@ const onSubmit = (e) => {
           </div>
         
        
-      <div className="bg-slate-400'">
+      {/* <div className="bg-slate-400'">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-lg font-medium text-gray-900">Upcoming Events</h2>
         <div className="mt-6 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10">
@@ -375,8 +377,19 @@ const onSubmit = (e) => {
           ))}
         </div>
       </div>
+    </div> */}
+    <div className="bg-slate-400">
+      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 className="text-lg font-medium text-gray-900">Upcoming Events</h2>
+        <div className="mt-6 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10">
+          {events.map((event) => (
+            <UpcomingEventItem key={event.id} event={event}/>
+          ))}
+        </div>
+      </div>
     </div>
     </div>
+    
     )
   }
 
