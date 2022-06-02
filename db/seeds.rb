@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Venue.destroy_all
-Event.destroy_all
+# Event.destroy_all
+CartItem.destroy_all
 
 # t1 = Timeslot.create(start_time: "6:00 PM", time_value: "T18:00:00.000Z")
 # t1 = Timeslot.create(start_time: "7:00 PM", time_value: "T19:00:00.000Z")

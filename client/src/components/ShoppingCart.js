@@ -38,14 +38,10 @@ console.log(cartItems)
     
   }
 
-  cartItems.forEach(cartItem => {
-    totalPrice += cartItem.total_price;
-  });
+ 
   
   console.log(totalPrice)
-  function handleClick(){
-    console.log(totalPrice)
-  }
+
    
     return (
 

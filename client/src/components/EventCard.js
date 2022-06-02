@@ -19,6 +19,7 @@ function EventCard({event, handlePost, user}) {
         status: "in_cart"
       }
       handlePost(cartItem)
+      console.log(cartItem)
     }
 
     return (

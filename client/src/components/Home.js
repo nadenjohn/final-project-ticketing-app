@@ -7,19 +7,7 @@ function Home( {events, handlePost, user, setCartItems} ) {
   
 
 
-function handlePost(obj){
-  fetch('/cart_items',{
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body:JSON.stringify(obj)
-  }).then((r) => {
-    if (r.ok) {
-      fetch(`/user_cart?user_id=${user.id}`) 
-      .then(res=>res.json())
-      .then(setCartItems)
-    }
-  });
-}
+
     return (
       <div >
         <FilterShows />

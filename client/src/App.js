@@ -73,6 +73,7 @@ function App() {
   // }, 
   // []);
 
+
  
 
   
@@ -92,27 +93,48 @@ function handleRemoveCartItem(id){
   });
   
 }
-
-
-function handleCheckout() {
-  console.log(cartItems)
-  console.log(user)
-
-  fetch(`/cart_items?user_id=${user.id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-
+function handlePost(obj){
+  fetch('/cart_items',{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body:JSON.stringify(obj)
   }).then((r) => {
-  if (r.ok) {
-    fetch(`/user_cart?user_id=${user.id}`) 
-    .then(res=>res.json())
-    .then(setCartItems)
-  }
-});
-
+    if (r.ok) {
+      fetch(`/user_cart?user_id=${user.id}`) 
+      .then(res=>res.json())
+      .then(setCartItems)
+    }
+  });
 }
+useEffect(() => {
+  fetch(`/user_cart?user_id=${user.id}`)
+  .then(res => res.json())
+  .then(data => {
+    setCartItems(data);
+  });
+}, 
+[]);
+
+
+// function handleCheckout() {
+//   console.log(cartItems)
+//   console.log(user)
+
+//   fetch(`/cart_items?user_id=${user.id}`, {
+//     method: "PATCH",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+
+//   }).then((r) => {
+//   if (r.ok) {
+//     fetch(`/user_cart?user_id=${user.id}`) 
+//     .then(res=>res.json())
+//     .then(data => setCartItems(data))
+//   }
+// });
+
+// }
 
 
 
@@ -125,12 +147,12 @@ if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser=
       <div>
           <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
           <Routes>
-            <Route path="/" element={<Home  events={events}  setEvents={setEvents} user={user} setCartItems={setCartItems}/>} />
+            <Route path="/" element={<Home  events={events}  setEvents={setEvents} handlePost={handlePost} user={user} setCartItems={setCartItems}/>} />
             <Route path="/myreservations" element={<MyReservations events={events}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues} setVenues={setVenues}/>}/>
             <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
           </Routes>
-          <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} open={open}/>
+          <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} user={user} open={open}/>
        
 
       
