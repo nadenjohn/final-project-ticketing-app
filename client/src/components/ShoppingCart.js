@@ -8,7 +8,17 @@ import CartItemCard from './CartItemCard'
 
 function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, open, user}) {
 
- 
+console.log(cartItems)
+  let totalPrice = 0;
+
+  cartItems.forEach(cartItem => {
+    totalPrice += cartItem.total_price;
+  });
+  
+  console.log(totalPrice)
+  function handleClick(){
+    console.log(totalPrice)
+  }
    
     return (
 
@@ -69,13 +79,14 @@ function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, o
                       <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>$32.00</p>
+                          <p>${totalPrice}</p>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                         <div className="mt-6">
                           <a
                             href="#"
                             className="flex items-center justify-center rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            onClick={handleClick}
                           >
                             Checkout
                           </a>
