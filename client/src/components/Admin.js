@@ -141,21 +141,21 @@ const onSubmit = (e) => {
 
 
     return (
-      <>
-      <div>
-        <div className="md:grid md:grid-cols-3 md:gap-6">
-          <div className="md:col-span-1">
+      <div >
+      
+        
+          {/* <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">Add a new event...</h3>
               <p className="mt-1 text-sm text-gray-600">
                 
               </p>
             </div>
-          </div>
-          <div className="mt-5 md:mt-0 md:col-span-2">
+          </div> */}
+          <div className=" mt-5 md:mt-0 md:col-span-2">
             <form action="#" method="POST" onSubmit={onSubmit}>
               <div className="shadow sm:rounded-md sm:overflow-hidden">
-                <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                <div className="px-4 py-5 bg-slate-400' space-y-6 sm:p-6">
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
                       <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
@@ -331,7 +331,7 @@ const onSubmit = (e) => {
                     </div>
                   </div> */}
                 </div>
-                <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <div className="px-4 py-3 bg-slate-400'text-right sm:px-6">
                   <input
                 
                     type="submit"
@@ -341,21 +341,18 @@ const onSubmit = (e) => {
               </div>
             </form>
           </div>
-        </div>
-      </div> 
-      <div className="bg-white">
+        
+       
+      <div className="bg-slate-400'">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-lg font-medium text-gray-900">Upcoming Events</h2>
         <div className="mt-6 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10">
           {events.map((event) => (
-            <div key={event.event_id} className="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
+            <div key={event.event_id} className="bg-neutral-300 pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
               <div className="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
                 <div className="flex items-center xl:col-span-1">
 
-                  <p className="ml-3 text-sm text-gray-700">
-                    {event.price}
-                    <span className="sr-only"> out of 5 stars</span>
-                  </p>
+                <img className="w-full" src={event.image} alt={event.event_name}/>
                 </div>
 
                 <div className="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2">
@@ -379,7 +376,7 @@ const onSubmit = (e) => {
         </div>
       </div>
     </div>
-    </>
+    </div>
     )
   }
 
