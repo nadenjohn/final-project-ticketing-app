@@ -45,7 +45,7 @@ function CalendarItem({setCalendar, calendar}) {
     const handleSelect = (date) => {
       // console.log(date)
       // console.log(format(date, 'MM/dd/yyyy'))
-      setCalendar(format(date, 'MM/dd/yyyy'))
+      setCalendar(format(date, 'yyyy/MM/dd'))
       
       
     }

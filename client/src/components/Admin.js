@@ -1,11 +1,12 @@
 import React from "react";
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/solid'
 import CalendarItem from './CalenderItem'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
-import { TimePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { format } from 'date-fns';
 
 
 
@@ -24,13 +25,33 @@ function Admin( {addEvent, events} ) {
 
   };
   const [newEvent, setNewEvent] = useState(blankAddEventForm)
-  const {event_name, price, event_description, event_image, event_type, available_tickets, event_date, venue_id} = newEvent;
+  const {event_name, price, event_description, image, event_type, available_tickets, event_date, venue_id} = newEvent;
   const timeValue: Date = new Date("01/01/2021 08:30 AM");
   const minTime: Date = new Date("01/02/2021 01:00 AM");
   const maxTime: Date = new Date("01/02/2021 05:00 AM");
   const [calendar, setCalendar] = useState('')
-  const [clock, setClock] = useState ('')
+  const [timeSlots, setTimeSlots] = useState ([])
+  const [timeSlot, setTimeSlot] = useState (null)
+  const [timeOption, setTimeOption] = useState('')
   console.log(events)
+
+  const id = timeOption
+  console.log(timeOption)
+
+  useEffect(() => {
+    fetch("/timeslots")
+      .then((r) => r.json())
+      .then(setTimeSlots);
+  }, []);
+
+  useEffect(() => {
+    fetch(`/timeslots/${id}`)
+      .then((r) => r.json())
+      .then((timeSlot)=>
+      setTimeSlot(timeSlot));
+  }, [id]);
+
+
 
   function handleEventNameChange(e){
    
@@ -63,12 +84,14 @@ function Admin( {addEvent, events} ) {
 }
   function handleEventImageChange(e){
     setNewEvent({...newEvent,
-    event_image: e.target.value,
+    image: e.target.value,
 
   })
 
 }
   function handleEventDateChange(e){
+    console.log(e.target.value)
+
     setNewEvent({...newEvent,
     event_date: e.target.value,
 
@@ -135,15 +158,23 @@ const handleForm = (e) => {
                         Event Dates
                   </label>
                   <CalendarItem setCalendar={setCalendar} calendar={calendar} />
-                  <TimePickerComponent placeholder="Select a time"
-                   
-                    value={timeValue}
-                    min={minTime}
-                    max={maxTime}
-                    format="HH:mm"
-                    step={60}>
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="col-span-3 sm:col-span-2">
+                      <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                        Event Time
+                      </label>
+                      <select value={timeOption} onChange={(e) => setTimeOption(e.target.value)}>
+                  <option value="">Select Time</option>
+                  {timeSlots.map((timeSlot) => (
+                    <option key={timeSlot.id} value={timeSlot.id}>
+                      {timeSlot.star_time}
+                    </option>
+                  ))}
 
-                  </TimePickerComponent>
+                </select>
+                    </div>
+                    </div>
+
 
                   <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-3 sm:col-span-2">
@@ -230,7 +261,7 @@ const handleForm = (e) => {
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                         placeholder="Image url..."
-                        value={newEvent.event_image}
+                        value={newEvent.image}
                         onChange={handleEventImageChange}
                       />
                     </div>
@@ -238,7 +269,7 @@ const handleForm = (e) => {
 
                   
 
-                  <div>
+                  {/* <div>
                     <label className="block text-sm font-medium text-gray-700">Event photo</label>
                     <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                       <div className="space-y-1 text-center">
@@ -269,7 +300,7 @@ const handleForm = (e) => {
                         <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
