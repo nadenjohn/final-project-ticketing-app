@@ -23,7 +23,7 @@ function EventCard({event, handlePost, user}) {
     }
 
     return (
-<div className="max-w-sm rounded overflow-hidden shadow-lg">
+<div className="bg-neutral-300 max-w-sm rounded overflow-hidden shadow-lg">
   <img className="w-full" src={event.image} alt={event.event_name}/>
   <div className="px-6 py-4">
     <div className="font-bold text-xl mb-2">{event.event_name}</div>

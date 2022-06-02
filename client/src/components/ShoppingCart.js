@@ -6,11 +6,11 @@ import { XIcon } from '@heroicons/react/outline'
 import CartItemCard from './CartItemCard'
 
 
-function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, open, user}) {
+function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, open, user, setMyReservations}) {
 
 
 
-console.log(cartItems)
+
   let totalPrice = 0;
 
   cartItems.forEach(cartItem => {
@@ -30,9 +30,9 @@ console.log(cartItems)
 
     }).then((r) => {
       if (r.ok) {
-        fetch(`/user_cart?user_id=${user.id}`) 
+        fetch(`/my_reservations?user_id=${user.id}`) 
         .then(res=>res.json())
-        .then(setCartItems)
+        .then(setMyReservations)
       }
     });
     
@@ -40,7 +40,7 @@ console.log(cartItems)
 
  
   
-  console.log(totalPrice)
+ 
 
    
     return (

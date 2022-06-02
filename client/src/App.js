@@ -22,8 +22,17 @@ function App() {
   const [venues, setVenues] = useState([])
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems]=useState([])
+  const [myReservations, setMyReservations]= useState([])
 
 
+  useEffect(() => {
+    fetch(`/my_reservations?user_id=${user.id}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setMyReservations(data);
+      });
+  }, []);
+  
   console.log(cartItems)
     useEffect(() => {
       const token = localStorage.getItem("token")
@@ -72,6 +81,8 @@ function App() {
   //   });
   // }, 
   // []);
+  
+
 
 
  
@@ -106,14 +117,11 @@ function handlePost(obj){
     }
   });
 }
-useEffect(() => {
-  fetch(`/user_cart?user_id=${user.id}`)
-  .then(res => res.json())
-  .then(data => {
-    setCartItems(data);
-  });
-}, 
-[]);
+
+
+
+
+
 
 
 // function handleCheckout() {
@@ -144,15 +152,15 @@ if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser=
 
   return (
    
-      <div>
+      <div className='bg-slate-400'>
           <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
           <Routes>
             <Route path="/" element={<Home  events={events}  setEvents={setEvents} handlePost={handlePost} user={user} setCartItems={setCartItems}/>} />
-            <Route path="/myreservations" element={<MyReservations events={events}/>} />
+            <Route path="/myreservations" element={<MyReservations myReservations={myReservations}/>} />
             <Route path="/ourvenues" element={<OurVenues venues={venues} setVenues={setVenues}/>}/>
             <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
           </Routes>
-          <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} user={user} open={open}/>
+          <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} setMyReservations={setMyReservations} user={user} open={open}/>
        
 
       

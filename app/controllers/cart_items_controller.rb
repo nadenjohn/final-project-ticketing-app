@@ -10,8 +10,13 @@ class CartItemsController < ApplicationController
         render json: cart_item
     end
     def user_cart
-        user_cart = CartItem.where(user_id: params[:user_id], status: "in_cart")
+        user_cart = CartItem.where(user_id: params[:user_id], status: "in_cart").all
         render json: user_cart
+    end
+
+    def my_reservations
+        my_reservations = CartItem.where(user_id: params[:user_id], status: "purchased").all
+        render json: my_reservations
     end
     def cart_checkout
         purchased_items = CartItem.where(user_id: params[:user_id]).update_all(status: 'purchased')
