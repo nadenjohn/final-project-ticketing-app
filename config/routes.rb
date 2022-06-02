@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   patch '/cart_checkout/', to: 'cart_items#cart_checkout'
   get '/profile', to: 'users#profile'
   get '/user_cart', to: 'cart_items#user_cart'
+  get '/my_reservations', to: 'cart_items#my_reservations'
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

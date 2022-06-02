@@ -9,7 +9,7 @@ function CartItemCard({cartItem, handleRemoveCartItem}) {
         <li key={cartItem.id} className="flex py-6">
             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
               <img
-                src='https://cdn3.whatculture.com/images/2020/06/f89dc9fa7526554c-1200x675.jpg'
+                src={cartItem.event.image}
                 alt={cartItem.id}
                 className="h-full w-full object-cover object-center"
               />
