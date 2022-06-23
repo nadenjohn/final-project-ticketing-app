@@ -108,7 +108,7 @@ function ShoppingCart({cartItems, setCartItems, handleRemoveCartItem, setOpen, o
                         <div className="mt-6">
                           <a
                             href="#"
-                            className="flex items-center justify-center rounded-md border border-transparent bg-gray-800 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            className="flex items-center justify-center rounded-md border border-transparent bg-red-700  px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                             onClick={handleCheckout}
                           >
                             Checkout
