@@ -11,11 +11,11 @@ class AuthenticationController < ApplicationController
       if !@user.authenticate params[:password]
         render json: { message: 'Invalid username or password' }, status: :unauthorized
       else
-        payload = { user: @user }
+        payload = { user_id: @user.id }
         secret = 'this is secret'
         token = JWT.encode payload, secret
 
-        render json: {token: token, user: payload}, status: :ok
+        render json: {token: token, user: @user}, status: :ok
       end
     end
   end

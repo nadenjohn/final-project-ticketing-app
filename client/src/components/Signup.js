@@ -20,7 +20,7 @@ function Signup( {setUser, user} ) {
         const user = {
         username: username,
             password: password,
-            admin: true
+            admin: false
         }
 
         console.log(user)
