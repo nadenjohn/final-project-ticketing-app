@@ -19,7 +19,6 @@ function CalendarItem({setCalendar, calendar}) {
         setOpen(false);
       }
     }
-  
     const hideOnClickOutside = (e) => {
       if( refOne.current && !refOne.current.contains(e.target) ) {
         setOpen(false)
@@ -31,15 +30,13 @@ function CalendarItem({setCalendar, calendar}) {
     }
    
     return (
-      <div className="calendarWrap">
-  
+      <div className="calendarWrap">  
         <input
           value={ calendar }
           readOnly
           className="inputBox"
           onClick={ () => setOpen(open => !open) }
         />
-  
         <div ref={refOne}>
           {open && 
             <Calendar
@@ -48,10 +45,9 @@ function CalendarItem({setCalendar, calendar}) {
               className="calendarElement"
             />
           }
-        </div>
-  
+        </div>  
       </div>
     )
   }
   
-  export default CalendarItem
+  export default CalendarItem;
