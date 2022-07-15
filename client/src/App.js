@@ -109,24 +109,17 @@ const userToken = localStorage.getItem('token');
 if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>
 
   return (
-   
-      <div className='bg-slate-400'>
-          <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
-          <Routes>
-            <Route path="/" element={<Home  events={events}  setEvents={setEvents} handlePost={handlePost} user={user} setCartItems={setCartItems}/>} />
-            <Route path="/myreservations" element={<MyReservations myReservations={myReservations}/>} />
-            <Route path="/ourvenues" element={<OurVenues venues={venues} setVenues={setVenues}/>}/>
-            <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
-          </Routes>
-          <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} setMyReservations={setMyReservations} user={user} open={open}/>
-       
-
-      
+    <div className='bg-slate-400'>
+      <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
+        <Routes>
+          <Route path="/" element={<Home  events={events}  setEvents={setEvents} handlePost={handlePost} user={user} setCartItems={setCartItems}/>} />
+          <Route path="/myreservations" element={<MyReservations myReservations={myReservations}/>} />
+          <Route path="/ourvenues" element={<OurVenues venues={venues} setVenues={setVenues}/>}/>
+          <Route path="/admin" element={<Admin events={events} addEvent={addEvent} />}/>
+        </Routes>
+      <ShoppingCart setOpen={setOpen} cartItems={cartItems} setCartItems={setCartItems} handleRemoveCartItem={handleRemoveCartItem} setMyReservations={setMyReservations} user={user} open={open}/>
     </div>
-
-
-)
-}
+)}
 
 export default App;
 
