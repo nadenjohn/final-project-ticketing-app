@@ -4,59 +4,40 @@ import Signup from './Signup'
 import LoginHeader from './LoginHeader'
 
 function LoginForm( {handleLogin, user, setUser} ){
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState([])
 
-    const [error, setError] = useState([])
+  const onSubmit = (evt) => {
+    evt.preventDefault()
 
-    // const handleUsername = (e) => {
-    //     setUsername(e.target.value)
-
-    // }
-    // const handlePassword=(e) => {
-    //     setPassword(e.target.value)
-    // }
-
-    const onSubmit = (evt) => {
-        evt.preventDefault()
-        
-
-        fetch(`/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body:JSON.stringify({
-                username,
-                password
-            })
+      fetch(`/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+          },
+          body:JSON.stringify({
+            username,
+            password
+          })
         })
         .then(resp => {
-        
-            if(resp.ok){
-                resp.json()
-                .then(data=>{
+          if(resp.ok){
+            resp.json()
+            .then(data=>{
             localStorage.setItem("user", data.user);
-            localStorage.setItem("token", data.token)
-            // handleLogin(data.user)
-            setUser(data.user)
-        
-            
-            console.log(localStorage.user)
-
-        })
+            localStorage.setItem("token", data.token);
+            setUser(data.user);
+            console.log(localStorage.user);
+          })
     } else {
         resp.json()
         .then(json => setError(json.error))
-    }
-    })
+    };
+    });
 
 }
-    
-   
- 
-  
     return(
         <>
         <LoginHeader />

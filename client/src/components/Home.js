@@ -1,13 +1,9 @@
 import React from "react";
 import EventCard from "./EventCard";
-
 import { useState, useEffect, } from 'react';
    
 function Home( {events, handlePost, user, setCartItems} ) {
   
-
-
-
     return (
       <div className='bg-slate-400'>
     
