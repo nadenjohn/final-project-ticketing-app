@@ -13,8 +13,6 @@ import Admin from './components/Admin'
 import LoginForm from './components/LoginForm'
 import ShoppingCart from './components/ShoppingCart'
 
-
-
 function App() {
   const [user, setUser] = useState({})
 
@@ -23,7 +21,6 @@ function App() {
   const [open, setOpen] = useState(false)
   const [cartItems, setCartItems]=useState([])
   const [myReservations, setMyReservations]= useState([])
-
 
   useEffect(() => {
     fetch(`/my_reservations?user_id=${user.id}`)
@@ -35,7 +32,7 @@ function App() {
   
   console.log(cartItems)
     useEffect(() => {
-      const token = localStorage.getItem("token")
+      const token = localStorage.getItem("token");
       if(token){
         fetch(`/profile`, {
           headers: {
@@ -45,12 +42,12 @@ function App() {
         })
         .then(resp => resp.json())
         .then((data) => {
-          console.log(data)
-          setUser(data)
-        })
+          console.log(data);
+          setUser(data);
+        });
       }
-    }, [])
-    console.log(user.id)
+    }, []);
+    console.log(user.id);
     const handleLogin = (user) => {
       setUser(user)
     }
@@ -74,26 +71,12 @@ function App() {
     });
   }, 
   []);
-  // useEffect(() => {
-  //   fetch('/venues')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     setVenues(data);
-  //   });
-  // }, 
-  // []);
-  
-
-
-
- 
-
   
 const handleLogout = () => {
-  console.log(localStorage.getItem("user"))
-  localStorage.removeItem("user")
-  localStorage.removeItem("token")
-  setUser({})
+  console.log(localStorage.getItem("user"));
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  setUser({});
 }
 function handleRemoveCartItem(id){
   fetch(`/cart_items/${id}`, {
@@ -116,40 +99,12 @@ function handlePost(obj){
     if (r.ok) {
       fetch(`/user_cart?user_id=${user.id}`) 
       .then(res=>res.json())
-      .then(setCartItems)
+      .then(setCartItems);
     }
   });
 }
 
-
-
-
-
-
-
-// function handleCheckout() {
-//   console.log(cartItems)
-//   console.log(user)
-
-//   fetch(`/cart_items?user_id=${user.id}`, {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-
-//   }).then((r) => {
-//   if (r.ok) {
-//     fetch(`/user_cart?user_id=${user.id}`) 
-//     .then(res=>res.json())
-//     .then(data => setCartItems(data))
-//   }
-// });
-
-// }
-
-
-
-const userToken = localStorage.getItem('token')
+const userToken = localStorage.getItem('token');
 
 if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>
 

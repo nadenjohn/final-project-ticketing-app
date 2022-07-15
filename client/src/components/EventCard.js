@@ -1,15 +1,12 @@
 import React from "react";
 
-
 function EventCard({event, handlePost, user}) {
 
-    const date=new Date(event.event_date).toLocaleString()
-    
-
-    const displayDate = date.slice(0, -6)
+    const date=new Date(event.event_date).toLocaleString();
+    const displayDate = date.slice(0, -6);
 
     function handleClick(e){
-      e.preventDefault()
+      e.preventDefault();
 
       const cartItem = {
         user_id: user.id,
@@ -17,9 +14,9 @@ function EventCard({event, handlePost, user}) {
         total_price: event.price,
         event_id: event.id,
         status: "in_cart"
-      }
-      handlePost(cartItem)
-      console.log(cartItem)
+      };
+      handlePost(cartItem);
+      console.log(cartItem);
     }
 
     return (
