@@ -22,6 +22,36 @@ function App() {
   const [cartItems, setCartItems]=useState([])
   const [myReservations, setMyReservations]= useState([])
 
+  //JWT user authentication
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if(token){
+      fetch(`/profile`, {
+        headers: {
+          method: "GET",
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(resp => resp.json())
+      .then((data) => {
+        console.log(data);
+        setUser(data);
+      });
+    }
+  }, []);
+  console.log(user.id);
+  //Login handler
+  const handleLogin = (user) => {
+    setUser(user)
+  }
+  //Logout handler
+  const handleLogout = () => {
+    console.log(localStorage.getItem("user"));
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser({});
+  }
+  //Fetching reservations of the current user
   useEffect(() => {
     fetch(`/my_reservations?user_id=${user.id}`)
       .then((r) => r.json())
@@ -29,40 +59,7 @@ function App() {
         setMyReservations(data);
       });
   }, []);
-  
-  console.log(cartItems)
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if(token){
-        fetch(`/profile`, {
-          headers: {
-            method: "GET",
-            Authorization: `Bearer ${token}`
-          }
-        })
-        .then(resp => resp.json())
-        .then((data) => {
-          console.log(data);
-          setUser(data);
-        });
-      }
-    }, []);
-    console.log(user.id);
-    const handleLogin = (user) => {
-      setUser(user)
-    }
-    function addEvent(obj) {
-      fetch('/events', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(obj),
-      })
-        .then((res) => res.json())
-        .then(data => {setEvents([...events, data])});
-    };
-
+  //Fetches upcoming scheduled events for homepage
   useEffect(() => {
     fetch('/events')
     .then(res => res.json())
@@ -72,43 +69,50 @@ function App() {
   }, 
   []);
   
-const handleLogout = () => {
-  console.log(localStorage.getItem("user"));
-  localStorage.removeItem("user");
-  localStorage.removeItem("token");
-  setUser({});
-}
-function handleRemoveCartItem(id){
-  fetch(`/cart_items/${id}`, {
-    method: "DELETE",
-  }).then((r) => {
-    if (r.ok) {
-      fetch(`/user_cart?user_id=${user.id}`) 
-      .then(res=>res.json())
-      .then(setCartItems)
-    }
-  });
+  //New Event creation for admin user
+  function addEvent(obj) {
+    fetch('/events', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+      })
+      .then((res) => res.json())
+      .then(data => {setEvents([...events, data])});
+    };
   
-}
-function handlePost(obj){
-  fetch('/cart_items',{
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body:JSON.stringify(obj)
-  }).then((r) => {
-    if (r.ok) {
-      fetch(`/user_cart?user_id=${user.id}`) 
-      .then(res=>res.json())
-      .then(setCartItems);
+  //Post ticket to user shopping cart
+  function handlePost(obj){
+    fetch('/cart_items',{
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body:JSON.stringify(obj)
+    }).then((r) => {
+      if (r.ok) {
+        fetch(`/user_cart?user_id=${user.id}`) 
+        .then(res=>res.json())
+        .then(setCartItems);
+      }
+    });
+  }
+  //Handles remove from cart click
+  function handleRemoveCartItem(id){
+    fetch(`/cart_items/${id}`, {
+      method: "DELETE",
+      })
+      .then((r) => {
+      if (r.ok) {
+        fetch(`/user_cart?user_id=${user.id}`) 
+        .then(res=>res.json())
+        .then(setCartItems)
     }
   });
 }
-
+//Check if JWT stored in local storage and redirects accourdingly
 const userToken = localStorage.getItem('token');
-
 if (!userToken) return <LoginForm handleLogin={handleLogin} user={user} setUser={setUser}/>
-
-  return (
+return (
     <div className='bg-slate-400'>
       <Header setOpen={setOpen} user={user} handleLogout={handleLogout}/>
         <Routes>
