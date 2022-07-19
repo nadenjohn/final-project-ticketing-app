@@ -2,25 +2,24 @@ import './App.css';
 import React from "react";
 import { useState, useEffect, Fragment } from 'react';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Dialog, Transition } from '@headlessui/react'
-import { XIcon } from '@heroicons/react/outline'
-
-import Header from './components/Header'
-import MyReservations from  "./components/MyReservations"
-import Home from "./components/Home"
-import OurVenues from "./components/OurVenues"
-import Admin from './components/Admin'
-import LoginForm from './components/LoginForm'
-import ShoppingCart from './components/ShoppingCart'
+import { Dialog, Transition } from '@headlessui/react';
+import { XIcon } from '@heroicons/react/outline';
+import Header from './components/Header';
+import MyReservations from  "./components/MyReservations";
+import Home from "./components/Home";
+import OurVenues from "./components/OurVenues";
+import Admin from './components/Admin';
+import LoginForm from './components/LoginForm';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState({});
 
-  const [events, setEvents] = useState([])
-  const [venues, setVenues] = useState([])
-  const [open, setOpen] = useState(false)
-  const [cartItems, setCartItems]=useState([])
-  const [myReservations, setMyReservations]= useState([])
+  const [events, setEvents] = useState([]);
+  const [venues, setVenues] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [cartItems, setCartItems]=useState([]);
+  const [myReservations, setMyReservations]= useState([]);
 
   //JWT user authentication
   useEffect(() => {
