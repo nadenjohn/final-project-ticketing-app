@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::API
   # include ActionController::Cookies
   before_action :authorize
+  
   def authorize
     auth_header = request.headers[:Authorization]
 
@@ -11,18 +12,15 @@ class ApplicationController < ActionController::API
 
      secret = 'this is secret'
 
-     begin
-         decoded_token = JWT.decode token, secret
+    begin
+      decoded_token = JWT.decode token, secret
+      payload = decoded_token.first
+      user_id = payload['user_id']
+      @user = User.find user_id
 
-         payload = decoded_token.first
-         user_id = payload['user_id']
-
-         @user = User.find user_id
-        
- 
-     rescue
-         render json: { message: 'Invalid token.'}, status: :forbidden
-     end
+    rescue
+      render json: { message: 'Invalid token.'}, status: :forbidden
     end
+  end
   end
 end
